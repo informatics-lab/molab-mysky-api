@@ -2,32 +2,52 @@
  * Created by tom on 07/04/16.
  */
 
-var AWS = require('aws-sdk');
+var uuid = require('node-uuid');
 
+var AWS = require('aws-sdk');
 AWS.config.update({
     region: "eu-west-1",
-    //endpoint: "http://localhost:8000"
 });
+var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
-var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'}).;
-
+//logging
 var debug = require('debug')('molab-wtf:services/molab-wtf-service');
 
 module.exports = {
 
-    addUser : function(username, password) {
-        debug("adding user :", username);
-        var params = {
-            ExclusiveStartTableName: 'STRING_VALUE'
-        };
-        dynamodb.put(params, function(err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
-            else     console.log(data);           // successful response
-        });
+    addUser: function (username, password) {
+        return new Promise(
+            function(resolve, reject) {
+                debug("adding user :", username);
+                var params = {
+                    TableName: "users",
+                    Item: {
+                        username: username,
+                        password: password
+                    },
+                    "ConditionExpression": "attribute_not_exists(username)"
+                };
+                docClient.put(params, function (err, data) {
+                    if (err) {                              // an error occurred
+                        debug(err, err.stack);
+                        reject(err);
+                    }
+                    else {                                  // successful response
+                        resolve(data);
+                    }
+                });
+            });
     },
 
-    updateUser : function(username, password) {},
+    updateUser: function (username, password) {
+    },
 
-    addUserOb : function(userId, location, obs, ob) {}
+    addUserOb: function (userId, location, obs, ob) {
+    }
 
 };
+
+function MolabWTFDBException(data) {
+    this.data = data;
+    this.name = "MolabWTFDBException";
+}
