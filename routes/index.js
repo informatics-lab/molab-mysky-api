@@ -15,6 +15,37 @@ router.get('/', function (req, res, next) {
 
 
 /**
+ * serve registration page
+ */
+router.get('/register', function (req, res) {
+    res.render('register');
+});
+
+
+/**
+ * allow user to register
+ */
+router.post('/register', function (req, res) {
+
+    var username = req.body.username;
+    var password = req.body.password;
+
+    debug("attempting to register :", username);
+
+    db.userService.add(username, password).then(
+        function (data) {
+            res.sendStatus(201);
+        }
+    ).catch(
+        function (err) {
+            res.status(err.statusCode).send(err.message);
+        }
+    );
+
+});
+
+
+/**
  * serve login page
  */
 router.get('/login', function (req, res) {
@@ -57,42 +88,6 @@ router.get('/logout',
 );
 
 
-/**
- * serve registration page
- */
-router.get('/register', function (req, res) {
-    res.render('register');
-});
-
-/**
- * allow user to register
- */
-router.post('/register', function (req, res) {
-
-    var username = req.body.username;
-    var password = req.body.password;
-
-    debug("attempting to register :", username);
-
-    db.userService.add(username, password).then(
-        function (data) {
-            res.sendStatus(201);
-        }
-    ).catch(
-        function (err) {
-            res.status(err.statusCode).send(err.message);
-        }
-    );
-
-});
-
-
-/**
- * allow user to update user credentials
- */
-router.put('/register', function (req, res) {
-    //TODO
-    res.send('update');
-});
+//TODO allow logged in user to update their password
 
 module.exports = router;
