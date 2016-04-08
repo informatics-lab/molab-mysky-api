@@ -30,14 +30,17 @@ router.post('/login',
     function (req, res) {
         var username = req.body.username;
         debug("user logged in :", username);
+        db.userService.updateLastLoginDt(username);
         res.sendStatus(200);
     });
 
-
-router.get('/loggedin',
+/*
+ * Just a test resource to confirm we are logged in/out
+ */
+router.get('/secret',
     require('connect-ensure-login').ensureLoggedIn(),
     function (req, res) {
-        res.send("you're logged in!");
+        res.send("you're logged in so can access secret resources!");
     }
 );
 
@@ -71,7 +74,7 @@ router.post('/register', function (req, res) {
 
     debug("attempting to register :", username);
 
-    db.userService.addUser(username, password).then(
+    db.userService.add(username, password).then(
         function (data) {
             res.sendStatus(201);
         }
@@ -91,15 +94,5 @@ router.put('/register', function (req, res) {
     //TODO
     res.send('update');
 });
-
-
-/**
- * insert user ob
- */
-router.post('/ob', function (req, res) {
-    db.addUserOb();
-
-});
-
 
 module.exports = router;

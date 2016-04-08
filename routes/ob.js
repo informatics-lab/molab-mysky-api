@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET image resource. */
-router.get('/', function(req, res, next) {
+/**
+ * allow user to post ob.
+ */
+router.post('/', function(req, res) {
     //TODO
 });
 
-//TODO image api endpoints
+//TODO ob api endpoints
 
 module.exports = router;
