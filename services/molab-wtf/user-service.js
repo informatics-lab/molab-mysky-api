@@ -38,8 +38,30 @@ module.exports = {
             });
     },
 
-    loginUser : function(username, password) {
-        //TODO
+    findByUsername : function(username) {
+        return new Promise(
+            function(resolve, reject) {
+                debug("finding user :", username);
+                var params = {
+                    TableName: "users",
+                    Key: {
+                        username: username
+                    }
+                };
+                docClient.get(params, function (err, data) {
+                    if (err) {                              // an error occurred
+                        debug(err, err.stack);
+                        reject(err);
+                    }
+                    else {                                  // successful response from db
+                        if(data.hasOwnProperty('Item')) {
+                            resolve(data.Item);
+                        } else {
+                            resolve(null);
+                        }
+                    }
+                });
+            });
     },
 
     updateUser: function (username, password) {
