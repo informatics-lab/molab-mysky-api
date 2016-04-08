@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var db = require('../services/molab-wtf-service');
+var db = require('../services/molab-wtf/user-service');
 var debug = require('debug')('molab-wtf:routes/user');
 
 /**
@@ -37,8 +37,17 @@ router.post('/register', function (req, res) {
     ).catch(
         function (err) {
             res.status(err.statusCode).send(err.message);
-        });
+        }
+    );
 
+});
+
+
+/**
+ * allow user to update user credentials
+ */
+router.put('/register', function (req, res) {
+   res.send('update');
 });
 
 

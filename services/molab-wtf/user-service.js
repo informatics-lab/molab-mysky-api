@@ -2,8 +2,6 @@
  * Created by tom on 07/04/16.
  */
 
-var uuid = require('node-uuid');
-
 var AWS = require('aws-sdk');
 AWS.config.update({
     region: "eu-west-1",
@@ -23,7 +21,8 @@ module.exports = {
                     TableName: "users",
                     Item: {
                         username: username,
-                        password: password
+                        password: password,
+                        registration_dt: new Date().toISOString()
                     },
                     "ConditionExpression": "attribute_not_exists(username)"
                 };
@@ -32,11 +31,15 @@ module.exports = {
                         debug(err, err.stack);
                         reject(err);
                     }
-                    else {                                  // successful response
+                    else {                                  // successful response from db
                         resolve(data);
                     }
                 });
             });
+    },
+
+    loginUser : function(username, password) {
+
     },
 
     updateUser: function (username, password) {
