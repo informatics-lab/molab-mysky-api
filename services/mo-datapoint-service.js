@@ -3,10 +3,25 @@
  *
  */
 
+var datapoint = require('datapoint-js');
+datapoint.set_key("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee");
+
 module.exports = {
 
-    getOb : function(location, obDt) {
+    getOb : function(location, dt) {
+        return new Promise(
+            function(resolve, reject) {
 
+            }
+        );
+    },
+
+    getForecast : function(location, dt) {
+        return new Promise(
+            function(resolve, reject) {
+
+            }
+        );
     }
 
 };

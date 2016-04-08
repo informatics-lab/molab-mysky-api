@@ -40,14 +40,10 @@ module.exports = {
     },
 
     updateUser: function (username, password) {
+        debug("not yet implemented");
     },
 
     addUserOb: function (userId, location, obs, ob) {
     }
 
 };
-
-function MolabWTFDBException(data) {
-    this.data = data;
-    this.name = "MolabWTFDBException";
-}

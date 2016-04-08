@@ -1,0 +1,147 @@
+{
+  "id" : "747f2e7b-b066-4bfa-937f-2e228381ba12",
+  "username" : "bob",
+  "location" : {
+      "latitude" : 0.00000,
+      "longitude" : 0.00000
+  },
+  "taken_dt" : "2016-04-07T15:27:27.764Z",
+  "inserted_dt" : "2016-04-07T15:27:27.764Z",
+  "obs" : [
+    {
+      "source" : "datapoint",
+      "meta" : {
+        "data_date": "2016-04-07T09:00:00.000Z",
+        "continent": "EUROPE",
+        "country": "ENGLAND",
+        "name": "KENLEY",
+        "longitude": "-0.09",
+        "latitude": "51.303",
+        "id": "3781",
+        "elevation": "170.0"
+      },
+      "ob" : {
+        "wind_direction" : {
+          "id" : "D",
+          "value" : "WSW",
+          "units" : "compass"
+        },
+        "humidity": {
+          "id" : "H",
+          "value" : "74.3",
+          "units" : "%"
+        },
+        "pressure" : {
+          "id" : "P",
+          "value" : "1008",
+          "units" : "hpa"
+        },
+        "wind_speed" : {
+          "id" : "S",
+          "value" : "15",
+          "units" : "mph"
+        },
+        "temperature" : {
+          "id" : "T",
+          "value" : "6.3",
+          "units" : "C"
+        },
+        "visibility" : {
+          "id" : "V",
+          "value" : "29000",
+          "units" : "m"
+        },
+        "weather" : {
+          "id" : "W",
+          "value" : "8",
+          "units" : "",
+          "text" : "Overcast"
+        },
+        "pressure_tendency" : {
+          "id" : "Pt",
+          "value" : "R",
+          "units" : "Pa/s"
+        },
+        "dew_point" : {
+          "id" : "Dp",
+          "value" : "2.1",
+          "units" : "C"
+        },
+        "name" : {
+          "id" : "$",
+          "value" : "540"
+        },
+        "date" : "2016-04-07T09:00:00.000Z"
+      }
+    }
+  ],
+  "forecasts" : [
+    {
+      "source" : "datapoint",
+      "meta" : {
+        "data_date": "2016-04-07T09:00:00.000Z",
+        "continent": "EUROPE",
+        "country": "ENGLAND",
+        "name": "KENLEY",
+        "longitude": "-0.09",
+        "latitude": "51.303",
+        "id": "3781",
+        "elevation": "170.0"
+      },
+      "forecast" : {
+        "wind_direction" : {
+          "id" : "D",
+          "value" : "WSW",
+          "units" : "compass"
+        },
+        "humidity": {
+          "id" : "H",
+          "value" : "74.3",
+          "units" : "%"
+        },
+        "pressure" : {
+          "id" : "P",
+          "value" : "1008",
+          "units" : "hpa"
+        },
+        "wind_speed" : {
+          "id" : "S",
+          "value" : "15",
+          "units" : "mph"
+        },
+        "temperature" : {
+          "id" : "T",
+          "value" : "6.3",
+          "units" : "C"
+        },
+        "visibility" : {
+          "id" : "V",
+          "value" : "29000",
+          "units" : "m"
+        },
+        "weather" : {
+          "id" : "W",
+          "value" : "8",
+          "units" : "",
+          "text" : "Overcast"
+        },
+        "pressure_tendency" : {
+          "id" : "Pt",
+          "value" : "R",
+          "units" : "Pa/s"
+        },
+        "dew_point" : {
+          "id" : "Dp",
+          "value" : "2.1",
+          "units" : "C"
+        },
+        "name" : {
+          "id" : "$",
+          "value" : "540"
+        },
+        "date" : "2016-04-07T09:00:00.000Z"
+      }
+    }
+  ],
+  "data" : "<BINARY IMAGE DATA>"
+}
