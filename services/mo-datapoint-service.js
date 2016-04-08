@@ -11,7 +11,7 @@ module.exports = {
     getOb : function(location, dt) {
         return new Promise(
             function(resolve, reject) {
-
+                //TODO
             }
         );
     },
@@ -19,7 +19,7 @@ module.exports = {
     getForecast : function(location, dt) {
         return new Promise(
             function(resolve, reject) {
-
+                //TODO
             }
         );
     }

@@ -9,7 +9,7 @@ AWS.config.update({
 var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
 //logging
-var debug = require('debug')('molab-wtf:services/molab-wtf-service');
+var debug = require('debug')('molab-wtf:services/molab-wtf/user-service');
 
 module.exports = {
 
@@ -39,14 +39,15 @@ module.exports = {
     },
 
     loginUser : function(username, password) {
-
+        //TODO
     },
 
     updateUser: function (username, password) {
-        debug("not yet implemented");
+        //TODO
     },
 
     addUserOb: function (userId, location, obs, ob) {
+        //TODO
     }
 
 };

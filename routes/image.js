@@ -6,9 +6,6 @@ router.get('/', function(req, res, next) {
     res.send('respond with a random image');
 });
 
-router.post()
-
-
-router.
+//TODO image api endpoints
 
 module.exports = router;
