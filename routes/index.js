@@ -57,7 +57,7 @@ router.get('/login', function (req, res) {
  * allow user to login
  */
 router.post('/login',
-    passport.authenticate('local', {failureRedirect: '/login'}),
+    passport.authenticate('local', { failureRedirect: '/login' }),
     function (req, res) {
         var username = req.body.username;
         debug("user logged in :", username);
@@ -71,7 +71,7 @@ router.post('/login',
 router.get('/secret',
     require('connect-ensure-login').ensureLoggedIn(),
     function (req, res) {
-        res.send("you're logged in so can access secret resources!");
+        res.send(req.user.username + " you're logged in so can access secret resources!");
     }
 );
 
