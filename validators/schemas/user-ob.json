@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "id": "/deviceId",
+      "type": "string"
+    },
+    "sessionId": {
+      "id": "/sessionId",
+      "type": "string"
+    },
+    "location": {
+      "id": "/location",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "id": "/location/latitude",
+          "type": "string"
+        },
+        "longitude": {
+          "id": "/location/longitude",
+          "type": "string"
+        }
+      }
+    },
+    "ob": {
+      "id": "/ob",
+      "type": "string"
+    }
+  },
+  "required": [
+    "deviceId",
+    "sessionId",
+    "location",
+    "ob"
+  ]
+}

@@ -9,8 +9,9 @@ var debug = require('debug')('molab-wtf:routes/ob');
  * allow user to post ob.
  */
 router.post('/', function(req, res) {
-    //TODO
-    //authenticate user
+
+    //TODO authenticate user
+
     debug('user ob posted \n', req.body);
 
     //validate req payload
@@ -18,7 +19,7 @@ router.post('/', function(req, res) {
         function() {
             debug('user ob valid');
 
-            //fetch professional obs and fcsts
+            //TODO fetch professional obs and fcsts
 
             //add user ob to db
             db.userObService.add(req.body.deviceId, req.body.sessionId, req.body.location, req.body.ob, [], []).then(
