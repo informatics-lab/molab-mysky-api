@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/imageOb",
+  "type": "object",
+  "properties": {
+    "imageId": {
+      "id": "/imageId",
+      "type": "string"
+    },
+    "sessionId": {
+      "id": "/sessionId",
+      "type": "string"
+    },
+    "deviceId": {
+      "id": "/deviceId",
+      "type": "string"
+    },
+    "ob": {
+      "id": "/ob",
+      "type": "string"
+    }
+  },
+  "required": [
+    "imageId",
+    "sessionId",
+    "deviceId",
+    "ob"
+  ]
+}

@@ -2,8 +2,8 @@
   "deviceId": "747f2e7b-b066-4bfa-937f-2e228381ba13",
   "sessionId" : "747f2e7b-b066-4bfa-937f-2e228381ba15",
   "location": {
-    "latitude": "99.99",
-    "longitude": "7.0000"
+    "latitude": 99.99,
+    "longitude": 7.0000
   },
   "ob": "747f2e7b-b066-4bfa-937f-2e228381jkh"
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "",
+  "id": "/userOb",
   "type": "object",
   "properties": {
     "deviceId": {
@@ -17,11 +17,11 @@
       "properties": {
         "latitude": {
           "id": "/location/latitude",
-          "type": "string"
+          "type": "number"
         },
         "longitude": {
           "id": "/location/longitude",
-          "type": "string"
+          "type": "number"
         }
       }
     },

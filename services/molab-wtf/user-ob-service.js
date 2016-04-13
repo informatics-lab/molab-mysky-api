@@ -31,14 +31,14 @@ module.exports = {
                 var params = {
                     TableName: "user_obs",
                     Item: {
-                        id : uuid.v4(),
+                        id: uuid.v4(),
                         type: "Feature",
-                        geometry : {
+                        geometry: {
                             type: "Point",
                             coordinates: [location.latitude, location.longitude]
                         },
                         properties: {
-                            deviceId : deviceId,
+                            deviceId: deviceId,
                             sessionId: sessionId,
                             dt: new Date().toISOString(),
                             obs: obs,
