@@ -1,7 +1,8 @@
 {
   "id" : "747f2e7b-b066-4bfa-937f-2e228381ba12",
-  "image_id" : "747f2e7b-b066-4bfa-937f-2e228381ba12",
-  "username" : "bob",
+  "imageId" : "747f2e7b-b066-4bfa-937f-2e228381ba12",
+  "deviceId" : "747f2e7b-b066-4bfa-937f-2e228381ba13",
+  "sessionId" : "747f2e7b-b066-4bfa-937f-2e228381ba15",
   "dt" : "2016-04-07T15:27:27.764Z",
-  "ob" : ""
+  "ob" : "747f2e7b-b066-4bfa-937f-2e228381ba15"
 }
