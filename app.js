@@ -5,10 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+//var Strategy = require('passport-local').Strategy;
+var Strategy = require('passport-http').BasicStrategy;
 var db = require('./services/molab-wtf');
 
+
 var routes = require('./routes/index');
+var ob = require('./routes/ob');
 
 var app = express();
 
@@ -51,21 +54,21 @@ passport.use(new Strategy(
 // typical implementation of this is as simple as supplying the user ID when
 // serializing, and querying the user record by ID from the database when
 // deserializing.
-passport.serializeUser(function (user, cb) {
-    cb(null, user.username);
-});
-
-passport.deserializeUser(function (username, cb) {
-    db.userService.findByUsername(username).then(
-        function(user) {
-            return cb(null, user);
-        }
-    ).catch(
-        function (err) {
-            return cb(err);
-        }
-    );
-});
+//passport.serializeUser(function (user, cb) {
+//    cb(null, user.username);
+//});
+//
+//passport.deserializeUser(function (username, cb) {
+//    db.userService.findByUsername(username).then(
+//        function(user) {
+//            return cb(null, user);
+//        }
+//    ).catch(
+//        function (err) {
+//            return cb(err);
+//        }
+//    );
+//});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -78,13 +81,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('express-session')({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
+//app.use(require('express-session')({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 
 app.use('/', routes);
+app.use('/ob', ob);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

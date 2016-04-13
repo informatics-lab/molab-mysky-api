@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 var db = require('../services/molab-wtf');
-var debug = require('debug')('molab-wtf:routes/user');
+var debug = require('debug')('molab-wtf:routes/');
 
 
 /**
@@ -13,81 +13,17 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'What The Forecast API'});
 });
 
-
-/**
- * serve registration page
- */
-router.get('/register', function (req, res) {
-    res.render('register');
-});
-
-
-/**
- * allow user to register
- */
-router.post('/register', function (req, res) {
-
-    var username = req.body.username;
-    var password = req.body.password;
-
-    debug("attempting to register :", username);
-
-    db.userService.add(username, password).then(
-        function (data) {
-            res.sendStatus(201);
-        }
-    ).catch(
-        function (err) {
-            res.status(err.statusCode).send(err.message);
-        }
-    );
-
-});
-
-
-/**
- * serve login page
- */
-router.get('/login', function (req, res) {
-    res.render('login');
-});
-
-
-/**
- * allow user to login
- */
-router.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
-    function (req, res) {
-        var username = req.body.username;
-        debug("user logged in :", username);
-        db.userService.updateLastLoginDt(username);
-        res.sendStatus(200);
-    });
-
 /*
- * Just a test resource to confirm we are logged in/out
+ * Just a test resource to confirm we are able to access protected resources
  */
-router.get('/secret',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function (req, res) {
-        res.send(req.user.username + " you're logged in so can access secret resources!");
-    }
-);
+//TODO
+//router.get('/secret',
+//    passport.authenticate('basic', {session :false}),
+//    function (req, res) {
+//        console.log(req);
+//        res.send(req.user.username + " you're logged in so can access secret resources!");
+//    }
+//);
 
-
-/**
- * allow user to logout
- */
-router.get('/logout',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function (req, res) {
-        req.logout();
-        res.sendStatus(200);
-    }
-);
-
-
-//TODO allow logged in user to update their password
 
 module.exports = router;
