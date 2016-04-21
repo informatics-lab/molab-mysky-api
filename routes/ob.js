@@ -10,8 +10,6 @@ var debug = require('debug')('molab-wtf:routes/ob');
  */
 router.post('/', function(req, res) {
 
-    //TODO authenticate user
-
     debug('user ob posted \n', req.body);
 
     //validate req payload
