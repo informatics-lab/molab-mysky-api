@@ -9,7 +9,7 @@ var debug = require('debug')('molab-wtf:routes/');
  * serve homepage
  */
 router.get('/', function (req, res) {
-    res.render('index', {title: 'What The Forecast API'});
+    res.render('index', {title: 'MySky API'});
 });
 
 module.exports = router;

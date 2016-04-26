@@ -37,7 +37,7 @@ router.post('/', function(req, res) {
     ).catch(
         function(err) {
             debug('user ob payload was invalid');
-            res.status(400).send(err);
+            res.status(400).send({"errors":err});
             return;
         }
     );
