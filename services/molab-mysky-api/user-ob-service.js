@@ -10,7 +10,7 @@ var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 var uuid = require('node-uuid');
 
 //logging
-var debug = require('debug')('molab-wtf:services/molab-wtf/user-ob-service');
+var debug = require('debug')('molab-wtf:services/molab-mysky-api/user-ob-service');
 
 module.exports = {
 

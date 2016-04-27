@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "debug": "export DEGBUG=molab-mysky-api:* && nodemon"
   },
   "dependencies": {
     "aws-sdk": "^2.3.1",

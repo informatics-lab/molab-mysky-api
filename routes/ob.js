@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var db = require('../services/molab-wtf');
+var db = require('../services/molab-mysky-api/');
 var validator = require('../validators').userObValidator;
-var debug = require('debug')('molab-wtf:routes/ob');
+var debug = require('debug')('molab-mysky-api:routes/ob');
 
 /**
  * allow user to post ob.
