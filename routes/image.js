@@ -20,7 +20,7 @@ router.post('/', function(req, res) {
             //TODO fetch professional obs and fcsts
 
             //add user image to db
-            db.userimageService.add(req.body.deviceId, req.body.sessionId, req.body.location, req.body.image, [], []).then(
+            db.imageService.add(req.body.deviceId, req.body.location, req.body.dt, req.body.data, [], []).then(
                 function() {
                     debug('user image stored');
                     res.sendStatus(201);

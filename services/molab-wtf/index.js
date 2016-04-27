@@ -3,3 +3,4 @@
  */
 
 exports.userObService = require('./user-ob-service');
+exports.imageService = require('./image-service');

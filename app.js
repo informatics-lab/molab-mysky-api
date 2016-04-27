@@ -9,6 +9,7 @@ var db = require('./services/molab-wtf');
 
 var routes = require('./routes/index');
 var ob = require('./routes/ob');
+var image = require('./routes/image');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/ob', ob);
+app.use('/image', image);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
