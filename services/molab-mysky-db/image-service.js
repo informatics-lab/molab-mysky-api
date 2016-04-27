@@ -72,18 +72,29 @@ module.exports = {
                         reject(err)
                     }
                     else{
-                        debug(data)
                         resolve(data)
                     }
                 })
             })
-    }//,
-    // getImage: function(){
-    //     return new Promise(
-    //         function(resolve, reject){
-    //             debug("getting an image")
-    //             docClient.get()
-    //         })
-
-    // }
+    },
+    getImageById: function(id){
+        return new Promise(
+            function(resolve, reject){
+                debug("getting an image")
+                var params = {
+                    TableName: "images",
+                    Key: {id: id}
+                };
+                docClient.get(params, function(err, data){
+                    if (err) {
+                        debug(err, err.stack);
+                        reject(err);
+                    }
+                    else{
+                        resolve(data);
+                    }
+                });
+            }
+        );
+    }
 };

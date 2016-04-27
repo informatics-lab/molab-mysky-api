@@ -47,10 +47,18 @@ router.post('/', upload.single('image'), function(req, res) {
 router.get('/', function(req, res){
     debug("getting image")
     db.imageService.getAllIds().then(function(data){
-        res.send(data);
+        var id = data.Items[Math.floor(Math.random()*(data.Items.length+1))].id;
+        db.imageService.getImageById(id).then(function(data){
+            res.send(data);
+            return;
+        }).catch(function(err){
+            res.status(500).send(err);
+            return;
+        });
     }).catch(function(err){
-        res.send(err);
-    })
+        res.status(500).send(err);
+        return;
+    });
 });
 
 module.exports = router;
