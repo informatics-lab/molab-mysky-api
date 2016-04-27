@@ -24,12 +24,12 @@ module.exports = {
      * @param fcsts - array of professional forecasts taken from device location
      * @returns {Promise}
      */
-    add: function (deviceId, location, dt, data, obs, fcsts) {
+    add: function (deviceId, location, dt, fileUrl, obs, fcsts) {
         return new Promise(
             function (resolve, reject) {
                 debug("adding user image");
                 var params = {
-                    TableName: "image",
+                    TableName: "images",
                     Item: {
                         id: uuid.v4(),
                         type: "Feature",
@@ -42,12 +42,11 @@ module.exports = {
                             dt: dt,
                             obs: obs,
                             fcsts: fcsts,
-                            data: data
+                            fileUrl: fileUrl
                         }
                     },
                     "ConditionExpression": "attribute_not_exists(id)"
                 };
-                debug("hi from promise")
                 docClient.put(params, function (err, data) {
                     if (err) {                              // an error occurred
                         debug(err, err.stack);

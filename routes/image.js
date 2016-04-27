@@ -18,8 +18,24 @@ router.post('/', upload.single('image'), function(req, res) {
     debug('req.files', req.file);
     s3.S3Service.add(req.file.buffer).then(function(data){
         debug(data)
-        res.sendStatus(201);
-        return;
+
+        //TODO fetch professional obs and fcsts
+
+        //add user image to db
+        var location = {latitude: req.body.latitude, longitude: req.body.longitude};
+        db.imageService.add(req.body.deviceId, location, req.body.dt, data.Location, [], []).then(
+            function() {
+                debug('user image stored');
+                res.sendStatus(201);
+                return;
+            }
+        ).catch(
+            function(err) {
+                debug('user image caused server error');
+                res.status(500).send(err);
+                return;
+            }
+        );
     }).catch(function(err){
         debug(err)
         res.status(500).send(err);
