@@ -3,24 +3,29 @@ var router = express.Router();
 
 var db = require('../services/molab-wtf');
 var validator = require('../validators').userImageValidator;
-var debug = require('debug')('molab-wtf:routes/image');
+var debug = require('debug')('molab-mysky-api:routes/image');
+var multer = require('multer');
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage, size: 20000000})
 
 /**
  * allow user to post image.
  */
-router.post('/', function(req, res) {
+router.post('/', upload.single('image'), function(req, res) {
 
     debug('user image posted \n', req.body);
+    debug('req.files', req.file);
 
     //validate req payload
-    validator.validate(req.body).then(
-        function() {
+    // validator.validate(req.body).then(
+    //     function() {
             debug('user image valid');
 
             //TODO fetch professional obs and fcsts
 
             //add user image to db
-            db.imageService.add(req.body.deviceId, req.body.location, req.body.dt, req.body.data, [], []).then(
+            var location = {latitude: req.body.latitude, longitude: req.body.longitude};
+            db.imageService.add(req.body.deviceId, location, req.body.dt, req.file.buffer, [], []).then(
                 function() {
                     debug('user image stored');
                     res.sendStatus(201);
@@ -33,14 +38,14 @@ router.post('/', function(req, res) {
                     return;
                 }
             );
-        }
-    ).catch(
-        function(err) {
-            debug('user image payload was invalid');
-            res.status(400).send({"errors":err});
-            return;
-        }
-    );
+        // }
+    // ).catch(
+    //     function(err) {
+    //         debug('user image payload was invalid');
+    //         res.status(400).send({"errors":err});
+    //         return;
+    //     }
+    // );
 
 });
 

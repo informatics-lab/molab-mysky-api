@@ -10,7 +10,7 @@ var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 var uuid = require('node-uuid');
 
 //logging
-var debug = require('debug')('molab-wtf:services/molab-wtf/image-service');
+var debug = require('debug')('molab-mysky-api:services/molab-wtf/image-service');
 
 module.exports = {
 
@@ -47,6 +47,7 @@ module.exports = {
                     },
                     "ConditionExpression": "attribute_not_exists(id)"
                 };
+                debug("hi from promise")
                 docClient.put(params, function (err, data) {
                     if (err) {                              // an error occurred
                         debug(err, err.stack);
@@ -57,7 +58,7 @@ module.exports = {
                     }
                 });
             });
-    },
+    }//,
     // getKeys: function() {
     //     return new Promise(
     //         function(resolve, reject){
