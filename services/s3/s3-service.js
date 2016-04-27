@@ -28,7 +28,7 @@ module.exports = {
                     Key: uuid.v4(),
                     Body: image
                 };
-                var upload = new s3.ManagedUpload({params: params});
+                var upload = new AWS.S3.ManagedUpload({params: params});
                 upload.send(function(err, data){
                     if (err){
                         debug(err)
