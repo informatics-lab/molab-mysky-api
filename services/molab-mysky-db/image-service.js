@@ -57,27 +57,27 @@ module.exports = {
                     }
                 });
             });
+    },
+    getAllIds: function() {
+        return new Promise(
+            function(resolve, reject){
+                debug("getting all keys")
+                var params = {
+                    TableName: "images",
+                    ProjectionExpression: "id"
+                };
+                docClient.scan(params, function(err, data){
+                    if (err) {
+                        debug(err, err.stack)
+                        reject(err)
+                    }
+                    else{
+                        debug(data)
+                        resolve(data)
+                    }
+                })
+            })
     }//,
-    // getKeys: function() {
-    //     return new Promise(
-    //         function(resolve, reject){
-    //             debug("getting all keys")
-    //             var params = {RequestItems:
-    //                             {"images":
-    //                                 {Keys: [],
-    //                                 AttributesToGet: ["id"]}}};
-    //             docClient.batchGet(params, function(err, data){
-    //                 if (err) {
-    //                     debug(err, err.stack)
-    //                     reject(err)
-    //                 }
-    //                 else{
-    //                     debug(data)
-    //                     resolve(data)
-    //                 }
-    //             })
-    //         })
-    // },
     // getImage: function(){
     //     return new Promise(
     //         function(resolve, reject){

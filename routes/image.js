@@ -42,37 +42,15 @@ router.post('/', upload.single('image'), function(req, res) {
         return;
     })
 
-    //validate req payload
-    // validator.validate(req.body).then(
-    //     function() {
-            // debug('user image valid');
+});
 
-            // //TODO fetch professional obs and fcsts
-
-            // //add user image to db
-            // var location = {latitude: req.body.latitude, longitude: req.body.longitude};
-            // db.imageService.add(req.body.deviceId, location, req.body.dt, req.file.buffer, [], []).then(
-            //     function() {
-            //         debug('user image stored');
-            //         res.sendStatus(201);
-            //         return;
-            //     }
-            // ).catch(
-            //     function(err) {
-            //         debug('user image caused server error');
-            //         res.status(500).send(err);
-            //         return;
-            //     }
-            // );
-        // }
-    // ).catch(
-    //     function(err) {
-    //         debug('user image payload was invalid');
-    //         res.status(400).send({"errors":err});
-    //         return;
-    //     }
-    // );
-
+router.get('/', function(req, res){
+    debug("getting image")
+    db.imageService.getAllIds().then(function(data){
+        res.send(data);
+    }).catch(function(err){
+        res.send(err);
+    })
 });
 
 module.exports = router;
