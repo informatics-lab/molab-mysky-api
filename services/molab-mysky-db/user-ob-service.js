@@ -10,26 +10,26 @@ var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 var uuid = require('node-uuid');
 
 //logging
-var debug = require('debug')('molab-mysky-api:services/molab-mysky-api/image-service');
+var debug = require('debug')('molab-mysky-api:services/molab-mysky-db/user-ob-service');
 
 module.exports = {
 
     /**
-     * Inserts a user image into the db
+     * Inserts a user ob into the db
      * @param deviceId - id of device submitting the user ob
+     * @param sessionId - session id of submission
      * @param location - location of device submitting the user ob
-     * @param data - the image file we are putting
-     * @param dt - datetime the image is taken
+     * @param ob - ob id value
      * @param obs - array of professional observations taken from device location
      * @param fcsts - array of professional forecasts taken from device location
      * @returns {Promise}
      */
-    add: function (deviceId, location, dt, data, obs, fcsts) {
+    add: function (deviceId, sessionId, location, ob, obs, fcsts) {
         return new Promise(
             function (resolve, reject) {
-                debug("adding user image");
+                debug("adding user observation");
                 var params = {
-                    TableName: "image",
+                    TableName: "user_obs",
                     Item: {
                         id: uuid.v4(),
                         type: "Feature",
@@ -39,15 +39,15 @@ module.exports = {
                         },
                         properties: {
                             deviceId: deviceId,
-                            dt: dt,
+                            sessionId: sessionId,
+                            dt: new Date().toISOString(),
                             obs: obs,
                             fcsts: fcsts,
-                            data: data
+                            ob: ob
                         }
                     },
                     "ConditionExpression": "attribute_not_exists(id)"
                 };
-                debug("hi from promise")
                 docClient.put(params, function (err, data) {
                     if (err) {                              // an error occurred
                         debug(err, err.stack);
@@ -58,33 +58,6 @@ module.exports = {
                     }
                 });
             });
-    }//,
-    // getKeys: function() {
-    //     return new Promise(
-    //         function(resolve, reject){
-    //             debug("getting all keys")
-    //             var params = {RequestItems:
-    //                             {"images":
-    //                                 {Keys: [],
-    //                                 AttributesToGet: ["id"]}}};
-    //             docClient.batchGet(params, function(err, data){
-    //                 if (err) {
-    //                     debug(err, err.stack)
-    //                     reject(err)
-    //                 }
-    //                 else{
-    //                     debug(data)
-    //                     resolve(data)
-    //                 }
-    //             })
-    //         })
-    // },
-    // getImage: function(){
-    //     return new Promise(
-    //         function(resolve, reject){
-    //             debug("getting an image")
-    //             docClient.get()
-    //         })
+    }
 
-    // }
 };
