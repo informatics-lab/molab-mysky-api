@@ -1,5 +1,5 @@
 /**
- * Created by tom on 07/04/16.
+ * Service for finding and storing image documents in DynamoDB
  */
 
 var AWS = require('aws-sdk');
@@ -10,7 +10,7 @@ var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 var uuid = require('node-uuid');
 
 //logging
-var debug = require('debug')('molab-mysky-api:services/molab-mysky-db/image-service');
+var debug = require('debug')('molab-mysky-api:services/dynamo-db/image-service');
 
 module.exports = {
 
