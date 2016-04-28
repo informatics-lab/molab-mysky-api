@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var debug = require('debug')('molab-mysky-api:routes/');
+var debug = require('debug')('molab-mysky-api:routes/index');
 
 
 /**

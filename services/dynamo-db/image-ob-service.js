@@ -1,5 +1,5 @@
 /**
- * Created by tom on 07/04/16.
+ * Service for storing image observation documents in DynamoDb
  */
 
 var AWS = require('aws-sdk');
@@ -10,41 +10,31 @@ var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 var uuid = require('node-uuid');
 
 //logging
-var debug = require('debug')('molab-mysky-api:services/molab-mysky-db/user-ob-service');
+var debug = require('debug')('molab-mysky-api:services/dynamo-db/image-ob-service');
 
 module.exports = {
 
     /**
-     * Inserts a user ob into the db
+     * Inserts an image observation into the db
      * @param deviceId - id of device submitting the user ob
      * @param sessionId - session id of submission
      * @param location - location of device submitting the user ob
      * @param ob - ob id value
-     * @param obs - array of professional observations taken from device location
-     * @param fcsts - array of professional forecasts taken from device location
      * @returns {Promise}
      */
-    add: function (deviceId, sessionId, location, ob, obs, fcsts) {
+    add: function (deviceId, sessionId, imageId, ob) {
         return new Promise(
             function (resolve, reject) {
-                debug("adding user observation");
+                debug("adding image observation");
                 var params = {
-                    TableName: "user_obs",
+                    TableName: "image_obs",
                     Item: {
                         id: uuid.v4(),
-                        type: "Feature",
-                        geometry: {
-                            type: "Point",
-                            coordinates: [location.latitude, location.longitude]
-                        },
-                        properties: {
-                            deviceId: deviceId,
-                            sessionId: sessionId,
-                            dt: new Date().toISOString(),
-                            obs: obs,
-                            fcsts: fcsts,
-                            ob: ob
-                        }
+                        imageId : imageId,
+                        deviceId: deviceId,
+                        sessionId: sessionId,
+                        dt: new Date().toISOString(),
+                        ob: ob
                     },
                     "ConditionExpression": "attribute_not_exists(id)"
                 };
