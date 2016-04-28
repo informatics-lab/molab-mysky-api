@@ -24,7 +24,7 @@ router.post('/', function (req, res) {
                 .then(
                     function () {
                         debug('user ob stored');
-                        res.sendStatus(201);
+                        res.status(201).send();
                         return;
                     }
                 ).catch(

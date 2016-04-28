@@ -62,7 +62,7 @@ router.post('/', upload.single('image'), function (req, res) {
                     .then(
                         function () {
                             debug('user image stored');
-                            res.sendStatus(201);
+                            res.status(201).send();
                             return;
                         }
                     ).catch(
@@ -96,7 +96,7 @@ router.post('/ob', function (req, res) {
                     .then(
                         function () {
                             debug('image observation stored');
-                            res.sendStatus(201);
+                            res.status(201).send();
                             return;
                         }
                     ).catch(
