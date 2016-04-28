@@ -1,7 +1,3 @@
-/**
- * Created by tom on 07/04/16.
- */
-
 var AWS = require('aws-sdk');
 AWS.config.update({
     region: "eu-west-1",
@@ -10,13 +6,13 @@ var s3 = new AWS.S3({apiVersion: '2006-03-01'});
 var uuid = require('node-uuid');
 
 //logging
-var debug = require('debug')('molab-mysky-api:services/s3/s3-service');
+var debug = require('debug')('molab-mysky-api:services/s3/image-service');
 
 module.exports = {
 
     /**
      * Inserts a user image into the s3 bucket
-     * @param data - the image file we are putting
+     * @param image - the image file we are putting
      * @returns {Promise}
      */
     add: function (image) {
@@ -29,12 +25,11 @@ module.exports = {
                     Body: image
                 };
                 var upload = new AWS.S3.ManagedUpload({params: params});
-                upload.send(function(err, data){
-                    if (err){
-                        debug(err)
+                upload.send(function (err, data) {
+                    if (err) {
+                        debug(err);
                         reject(err);
-                    }else{
-                        debug(data)
+                    } else {
                         resolve(data);
                     }
                 })

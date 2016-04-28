@@ -18,8 +18,8 @@ module.exports = {
      * Inserts a user image into the db
      * @param deviceId - id of device submitting the user ob
      * @param location - location of device submitting the user ob
-     * @param data - the image file we are putting
      * @param dt - datetime the image is taken
+     * @param fileUrl - the s3 bucket location of the image
      * @param obs - array of professional observations taken from device location
      * @param fcsts - array of professional forecasts taken from device location
      * @returns {Promise}
@@ -58,39 +58,50 @@ module.exports = {
                 });
             });
     },
-    getAllIds: function() {
+
+    /**
+     * Gets all ids from the image db
+     * @returns {Promise}
+     */
+    getAllIds: function () {
         return new Promise(
-            function(resolve, reject){
-                debug("getting all keys")
+            function (resolve, reject) {
+                debug("getting all ids");
                 var params = {
                     TableName: "images",
                     ProjectionExpression: "id"
                 };
-                docClient.scan(params, function(err, data){
+                docClient.scan(params, function (err, data) {
                     if (err) {
-                        debug(err, err.stack)
+                        debug(err, err.stack);
                         reject(err)
                     }
-                    else{
+                    else {
                         resolve(data)
                     }
                 })
             })
     },
-    getImageById: function(id){
+
+    /**
+     * Gets a specific image from the db by its id
+     * @param id - the id of the image to fetch
+     * @returns {Promise}
+     */
+    getImageById: function (id) {
         return new Promise(
-            function(resolve, reject){
-                debug("getting an image")
+            function (resolve, reject) {
+                debug("getting image with id " + id);
                 var params = {
                     TableName: "images",
                     Key: {id: id}
                 };
-                docClient.get(params, function(err, data){
+                docClient.get(params, function (err, data) {
                     if (err) {
                         debug(err, err.stack);
                         reject(err);
                     }
-                    else{
+                    else {
                         resolve(data);
                     }
                 });
