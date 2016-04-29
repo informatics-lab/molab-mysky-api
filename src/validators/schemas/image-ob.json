@@ -1,22 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "/imageOb",
+  "id": "/image/ob",
   "type": "object",
   "properties": {
     "imageId": {
-      "id": "/imageId",
+      "id": "/image/ob/imageId",
       "type": "string"
     },
     "sessionId": {
-      "id": "/sessionId",
+      "id": "/image/ob/sessionId",
       "type": "string"
     },
     "deviceId": {
-      "id": "/deviceId",
+      "id": "/image/ob/deviceId",
       "type": "string"
     },
     "ob": {
-      "id": "/ob",
+      "id": "/image/ob/ob",
       "type": "string"
     }
   },

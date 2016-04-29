@@ -6,30 +6,30 @@ var validator = require('../validators').userObValidator;
 var debug = require('debug')('molab-mysky-api:routes/ob');
 
 /**
- * allow user to post ob.
+ * allow userObValidator to post ob.
  */
 router.post('/', function (req, res) {
 
-    debug('user ob posted \n', req.body);
+    debug('userObValidator ob posted \n', req.body);
 
     //validate req payload
     validator.validate(req.body).then(
         function () {
-            debug('user ob valid');
+            debug('userObValidator ob valid');
 
             //TODO fetch professional obs and fcsts
 
-            //add user ob to db
+            //add userObValidator ob to db
             db.userObService.add(req.body.deviceId, req.body.sessionId, req.body.location, req.body.ob, [], [])
                 .then(
                     function () {
-                        debug('user ob stored');
+                        debug('userObValidator ob stored');
                         res.status(201).send();
                         return;
                     }
                 ).catch(
                     function (err) {
-                        debug('user ob caused server error');
+                        debug('userObValidator ob caused server error');
                         res.status(500).send(err);
                         return;
                     }
@@ -37,7 +37,7 @@ router.post('/', function (req, res) {
         }
     ).catch(
         function (err) {
-            debug('user ob payload was invalid');
+            debug('userObValidator ob payload was invalid');
             res.status(400).send({"errors": err});
             return;
         }

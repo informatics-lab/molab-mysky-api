@@ -10,10 +10,12 @@ To install this API locally:
 ```$ npm install```   
 ```$ npm start```   
 
-To run this API in debug mode first install nodemon   
-```$ npm install -g nodemon```   
+To run this API in debug mode:    
 ```$ npm install```   
-```$ npm run debug```   
+```$ npm run debug```
+
+To run the tests:
+```$ npm run tests```
 
 ### Docker
 ```docker pull quay.io/informaticslab/molab-mysky-api```

@@ -15,9 +15,9 @@ var debug = require('debug')('molab-mysky-api:services/dynamo-db/image-service')
 module.exports = {
 
     /**
-     * Inserts a user image into the db
-     * @param deviceId - id of device submitting the user ob
-     * @param location - location of device submitting the user ob
+     * Inserts a userObValidator image into the db
+     * @param deviceId - id of device submitting the userObValidator ob
+     * @param location - location of device submitting the userObValidator ob
      * @param dt - datetime the image is taken
      * @param fileUrl - the s3 bucket location of the image
      * @param obs - array of professional observations taken from device location
@@ -27,7 +27,7 @@ module.exports = {
     add: function (deviceId, location, dt, fileUrl, obs, fcsts) {
         return new Promise(
             function (resolve, reject) {
-                debug("adding user image");
+                debug("adding userObValidator image");
                 var params = {
                     TableName: "images",
                     Item: {

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/image",
+  "type": "object",
+  "properties": {
+    "dt": {
+      "id": "/image/dt",
+      "type": "string",
+      "format": "date-time"
+    },
+    "deviceId": {
+      "id": "/image/deviceId",
+      "type": "string"
+    },
+    "location": {
+      "id": "/image/location",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "id": "/image/location/latitude",
+          "type": "number",
+          "maximum": 90,
+          "minimum": -90,
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false
+        },
+        "longitude": {
+          "id": "/image/location/longitude",
+          "type": "number",
+          "maximum": 180,
+          "minimum": -180,
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false
+        }
+      }
+    }
+  },
+  "required": [
+    "dt",
+    "deviceId",
+    "location"
+  ]
+}

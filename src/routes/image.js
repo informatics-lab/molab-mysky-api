@@ -11,7 +11,7 @@ var storage = multer.memoryStorage();
 var upload = multer({storage: storage, size: 20000000});
 
 /**
- * allow user to get random image
+ * allow userObValidator to get random image
  */
 router.get('/', function (req, res) {
     debug("getting random image");
@@ -42,7 +42,7 @@ router.get('/', function (req, res) {
 });
 
 /**
- * allow user to post image.
+ * allow userObValidator to post image.
  */
 router.post('/', upload.single('image'), function (req, res) {
 
@@ -56,18 +56,18 @@ router.post('/', upload.single('image'), function (req, res) {
 
                 //TODO fetch professional obs and fcsts
 
-                //add user image to db
+                //add userObValidator image to db
                 var location = {latitude: req.body.latitude, longitude: req.body.longitude};
                 db.imageService.add(req.body.deviceId, location, req.body.dt, data.Location, [], [])
                     .then(
                         function () {
-                            debug('user image stored');
+                            debug('userObValidator image stored');
                             res.status(201).send();
                             return;
                         }
                     ).catch(
                     function (err) {
-                        debug('user image caused server error');
+                        debug('userObValidator image caused server error');
                         res.status(500).send(err);
                         return;
                     });
@@ -83,7 +83,7 @@ router.post('/', upload.single('image'), function (req, res) {
 });
 
 /**
- * allow user to post image ob
+ * allow userObValidator to post image ob
  */
 router.post('/ob', function (req, res) {
 
