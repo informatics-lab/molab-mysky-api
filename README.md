@@ -14,7 +14,7 @@ To run this API in debug mode:
 ```$ npm install```   
 ```$ npm run debug```
 
-To run the tests:
+To run the tests:  
 ```$ npm run tests```
 
 ### Docker
