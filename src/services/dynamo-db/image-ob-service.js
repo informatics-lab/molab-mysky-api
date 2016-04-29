@@ -16,9 +16,9 @@ module.exports = {
 
     /**
      * Inserts an image observation into the db
-     * @param deviceId - id of device submitting the userObValidator ob
+     * @param deviceId - id of device submitting the user ob
      * @param sessionId - session id of submission
-     * @param location - location of device submitting the userObValidator ob
+     * @param location - location of device submitting the user ob
      * @param ob - ob id value
      * @returns {Promise}
      */

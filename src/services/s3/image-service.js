@@ -15,14 +15,14 @@ var debug = require('debug')('molab-mysky-api:services/s3/image-service');
 module.exports = {
 
     /**
-     * Inserts a userObValidator image into the s3 bucket
+     * Inserts a user image into the s3 bucket
      * @param image - the image file we are putting
      * @returns {Promise}
      */
     add: function (image) {
         return new Promise(
             function (resolve, reject) {
-                debug("adding userObValidator image");
+                debug("adding user image");
                 var params = {
                     Bucket: 'molab-mysky-data',
                     Key: uuid.v4(),

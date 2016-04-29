@@ -10,15 +10,15 @@ var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 var uuid = require('node-uuid');
 
 //logging
-var debug = require('debug')('molab-mysky-api:services/dynamo-db/userObValidator-ob-service');
+var debug = require('debug')('molab-mysky-api:services/dynamo-db/user-ob-service');
 
 module.exports = {
 
     /**
-     * Inserts a userObValidator observation into the db
-     * @param deviceId - id of device submitting the userObValidator ob
+     * Inserts a user observation into the db
+     * @param deviceId - id of device submitting the user ob
      * @param sessionId - session id of submission
-     * @param location - location of device submitting the userObValidator ob
+     * @param location - location of device submitting the user ob
      * @param ob - ob id value
      * @param obs - array of professional observations taken from device location
      * @param fcsts - array of professional forecasts taken from device location
@@ -27,7 +27,7 @@ module.exports = {
     add: function (deviceId, sessionId, location, ob, obs, fcsts) {
         return new Promise(
             function (resolve, reject) {
-                debug("adding userObValidator observation");
+                debug("adding user observation");
                 var params = {
                     TableName: "user_obs",
                     Item: {
