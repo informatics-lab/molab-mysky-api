@@ -18,44 +18,17 @@ router.get('/', function (req, res) {
 
 
 /**
- * allow user to post ob.
+ * allow user to retrieve datapoint ob (forecast) via POST.
  */
 router.post('/', function (req, res) {
 
-
-    debug('user ob posted \n', req.body);
-
-    //validate req payload
-    validator.validate(req.body).then(
-        function () {
-            debug('user ob valid');
-
-            //TODO fetch professional obs and fcsts
-            var obs = datapoint.obsService.get(req.body.location);
-            var fcst = datapoint.fcstService.get(req.body.location);
-            //add user ob to db
-            db.userObService.add(req.body.deviceId, req.body.sessionId, req.body.location, req.body.ob, [], [])
-                .then(
-                    function () {
-                        debug('user ob stored');
-                        res.sendStatus(201);
-                        return;
-                    }
-                ).catch(
-                    function (err) {
-                        debug('user ob caused server error');
-                        res.status(500).send(err);
-                        return;
-                    }
-                );
-        }
-    ).catch(
-        function (err) {
-            debug('user ob payload was invalid');
-            res.status(400).send({"errors": err});
-            return;
-        }
-    );
+    debug('user ob POST\n', req.body);
+    datapoint.obsService.get({latitude: req.latitude, longitude:req.longitude})
+    .then(function(data) {
+      debug(data);
+      res.send(data);
+      return;
+    })
 
 });
 
